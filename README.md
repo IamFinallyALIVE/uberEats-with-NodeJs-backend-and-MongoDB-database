@@ -6,7 +6,8 @@ Run npm install for downloading the dependencies :
 
 
 
-IMPORTANT ----->  After running having all the dependencies, go to project folder and Run the server : node server.js
+IMPORTANT ----->  After running having all the dependencies, go to project folder and Run the server : 
+         node server.js
 
 
 Files Desprictions:
