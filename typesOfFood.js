@@ -9,7 +9,7 @@ const restaurantMenuDB = require('./databases/eachRestaurantDataBase/eachRestaur
 const restrauntMenu = restaurantMenuDB.getModel();
 
 
-const differentFoodTypes=["African","American","Chinese"];
+const differentFoodTypes=["American","Chinese","English","Italian","Japanese","African","Mediterranean"];
 
 exports.processResult= async function(){
 

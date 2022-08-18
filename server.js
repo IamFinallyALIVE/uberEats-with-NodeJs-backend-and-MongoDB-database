@@ -118,10 +118,7 @@ app.get('/restaurantMenu', async function (req, res){
 app.get('/restaurantMenuItems/:email', async function (req, res){
 
 	console.log('Menu');
-	console.log(req.params.email.slice(1));
 	let results= await preProcessResutls.processResultMenu(req.params.email.slice(1));
-
-	console.log(results);
 	res.send(JSON.stringify(results));
 });
 
@@ -129,8 +126,6 @@ app.get('/restaurantMenuItems/:email', async function (req, res){
 
 // for storing the cart
 app.post('/cartSave', async function (req, res){
-
-	console.log(req.body);
 	console.log(preProcessResutls.makeCart(req.body));
 	let results = await preProcessResutls.makeCart(req.body);
 	//console.log(req.params.email.slice(1));
