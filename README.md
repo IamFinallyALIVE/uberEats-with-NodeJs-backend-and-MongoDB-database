@@ -4,6 +4,8 @@ Run npm install for downloading the dependencies :
 2.) Make sure you have dependencies for JS HandelBars
 3.) Make Sure you have MongoDB Drivers and Database
 
+Note : node_modules are included in this repo (you may wanna delete them before installing new ones).
+
 
 
 IMPORTANT ----->  After running having all the dependencies, go to project folder and Run the server : 
