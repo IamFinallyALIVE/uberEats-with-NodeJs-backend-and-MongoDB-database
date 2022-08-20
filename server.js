@@ -5,6 +5,10 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+//XML converter
+var js2xmlparser = require("js2xmlparser");
+
+
 //include the different origin food
 const preProcessResutls=require("./typesOfFood.js");
 
@@ -15,10 +19,10 @@ const customer = customerDB.getModel();
 // setup handlebars view engine
 const handlebars = require('express-handlebars');
 
-app.engine('handlebars', 
-	handlebars({defaultLayout: 'frontPage'}));
-
+app.engine('handlebars', handlebars.engine({defaultLayout: 'frontPage'}));
 app.set('view engine', 'handlebars');
+
+
 
 //custom function
 var hb = handlebars.create({});
@@ -92,16 +96,39 @@ app.post('/restaurantListDisplay', async function (req, res){
 
 	let results= await preProcessResutls.processResult();
 
-	//console.log(JSON.stringify(results));
+	
+	let format=JSON.parse(JSON.stringify(req.headers));
 
-	res.send(JSON.stringify(results));
+		if (format.accept.split("/")[1]=='xml'){
+			//Send XML
+			res.send(js2xmlparser.parse(results));
+		}
+		else{
+			//send JSON
+			res.send(JSON.stringify(results));}
+	
+
+
+
+	//res.send(JSON.stringify(results));
 });
 
 //filter feature for the restraunt
 app.post('/restaurantListFilter', async function (req, res){
 	let results= await preProcessResutls.processResultFiltered(req.body);
 	//console.log(JSON.stringify(results));
-	res.send(JSON.stringify(results));
+	let format=JSON.parse(JSON.stringify(req.headers));
+
+		if (format.accept.split("/")[1]=='xml'){
+			//Send XML
+			res.send(js2xmlparser.parse(results));
+		}
+		else{
+			//send JSON
+			res.send(JSON.stringify(results));}
+
+	//res.send(JSON.stringify(results));
+
 });
 
 
@@ -132,6 +159,7 @@ app.post('/cartSave', async function (req, res){
 	//let results= await preProcessResutls.processResultMenu(req.params.email.slice(1));
 	//console.log(results);
 
+
 	res.send(JSON.stringify(results));
 });
 
@@ -161,7 +189,4 @@ app.use(function(req, res) {
 app.listen(3000, function(){
   console.log('http://localhost:3000');
 });
-
-
-
 

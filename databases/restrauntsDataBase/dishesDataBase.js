@@ -11,7 +11,7 @@ let model = null;
 
 let Schema = mongoose.Schema;
 
-// Step 2. For collection, replace lastName below with your lastName 
+
 
 //the schema definition
 let restaurantListSchema = new Schema({
